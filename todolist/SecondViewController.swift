@@ -10,6 +10,21 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
+    @IBOutlet var item: UITextField!
+    
+    
+    
+    @IBAction func additem(sender: AnyObject) {
+        
+        todolist.append(item.text)
+        
+        
+        item.text = ""
+        
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +34,18 @@ class SecondViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
 
+    func textFieldShouldReturn(textField: UITextField!) -> Bool{
+        item.resignFirstResponder()
+         return(true)
+        
+    }
+    
+   
 
 }
 

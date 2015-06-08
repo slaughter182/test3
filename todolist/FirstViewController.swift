@@ -8,8 +8,14 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+var todolist = [String]()
 
+class FirstViewController: UIViewController, UITableViewDelegate {
+    
+
+
+    @IBOutlet var todolisttable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,6 +25,28 @@ class FirstViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return todolist.count
+        
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
+        
+        cell.textLabel?.text = todolist[indexPath.row]
+        
+        return cell
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        todolisttable.reloadData()
+    }
+    
 
 
 }
